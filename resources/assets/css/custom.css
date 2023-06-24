@@ -2,3 +2,65 @@
     height: 50px;
     width: 50px;
 }
+
+
+.footerDescription {
+    margin-top: 1rem;
+    color: #e9e8e8;
+    font-family: "Raleway", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.footerLink {
+    text-decoration: none;
+    font-family: "Raleway", sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+}
+
+.footerLink:hover {
+    text-decoration: none;
+    color: #ffd900;
+}
+
+.footerSection {
+    box-shadow: 0 0px 10px 0px;
+    margin-top: 5rem;
+    background-color: #051b35;
+}
+
+.footerName {
+    color: #fff;
+    margin-top: 1rem;
+    font-family: "Raleway", sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+}
+
+.social-container {
+    margin-top: 30px;
+}
+
+a.social {
+    margin: 0 1rem;
+    transition: transform 250ms;
+    display: inline-block;
+}
+
+a.social:hover {
+    transform: translateY(-2px);
+}
+
+a.facebook {
+    color: #fff;
+}
+
+a.youtube {
+    color: #fff;
+}
+
+a.twitter {
+    color: #fff;
+}
