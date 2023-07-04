@@ -7,10 +7,10 @@ import book from "../../../assets/images/edit.png";
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import CustomerLayout from "@/Layouts/CustomerLayout";
 
-function HomePage() {
+function HomePage({ auth }) {
     return (
         <>
-            <CustomerLayout>
+            <CustomerLayout auth={auth}>
                 <Col className="m-4   ">
                     <Row className="d-felx justify-center align-items-center ">
                         <Col
