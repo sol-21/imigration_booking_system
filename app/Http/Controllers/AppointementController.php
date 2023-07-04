@@ -14,5 +14,7 @@ class AppointementController extends Controller
     public function store(Request $request)
     {
 
+        dd('hello');
+
     }
 }
