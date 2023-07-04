@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('appointements', function (Blueprint $table) {
             $table->id();
             $table->date('booking_date');
-            $table->foreignId('user_id')->constrained();
+            $table->string('reason');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
         });
     }
