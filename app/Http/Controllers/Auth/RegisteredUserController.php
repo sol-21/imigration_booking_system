@@ -51,4 +51,8 @@ class RegisteredUserController extends Controller
 
         return redirect(RouteServiceProvider::HOME);
     }
+    public function home(){
+
+        return Inertia::render('User/HomePage');
+    }
 }
