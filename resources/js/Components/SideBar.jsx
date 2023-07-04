@@ -1,28 +1,29 @@
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
-import Offcanvas from 'react-bootstrap/Offcanvas';
+import { Sidebar, Menu, MenuItem, SubMenu, sidebarClasses } from 'react-pro-sidebar';
+import { faPhone } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 function SideBar() {
-    const [show, setShow] = useState(false);
-
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Launch
-            </Button>
+            <Sidebar rootStyles={{
+                [`.${sidebarClasses.container}`]: {
+                    backgroundColor: "black",
+                    
+                    height: "100vh"
+                },
+            }} breakPoint='sm' >
+                <Menu>
+                    <SubMenu label="appointment">
+                        <MenuItem > all apointments </MenuItem>
+                        <MenuItem icon={<FontAwesomeIcon size="2x" />}> manage apointments  </MenuItem>
 
-            <Offcanvas show={show} onHide={handleClose}>
-                <Offcanvas.Header closeButton>
-                    <Offcanvas.Title>Offcanvas</Offcanvas.Title>
-                </Offcanvas.Header>
-                <Offcanvas.Body>
-                    Some text as placeholder. In real life you can have the elements you
-                    have chosen. Like, text, images, lists, etc.
-                </Offcanvas.Body>
-            </Offcanvas>
+                    </SubMenu>
+                    <MenuItem icon={<FontAwesomeIcon icon={faPhone} size="1x" />}> user </MenuItem>
+                    <MenuItem> landing info </MenuItem>
+                </Menu>
+            </Sidebar>
         </>
     );
 }

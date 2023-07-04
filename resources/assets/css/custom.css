@@ -3,7 +3,6 @@
     width: 50px;
 }
 
-
 .footerDescription {
     margin-top: 1rem;
     color: #e9e8e8;
@@ -63,4 +62,9 @@ a.youtube {
 
 a.twitter {
     color: #fff;
+}
+
+.width {
+    min-width: 300px;
+    max-width: 400px;
 }

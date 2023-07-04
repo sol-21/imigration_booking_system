@@ -68,6 +68,22 @@ export default function Register() {
 
                     <InputError message={errors.email} className="mt-2" />
                 </div>
+                <div className="mt-4">
+                    <InputLabel htmlFor="phone" value="Phone" />
+
+                    <TextInput
+                        id="phone"
+                        type="text"
+                        name="phone"
+                        value={data.phone}
+                        className="mt-1 block w-full"
+                        autoComplete="phone"
+                        onChange={handleOnChange}
+                        required
+                    />
+
+                    <InputError message={errors.phone} className="mt-2" />
+                </div>
 
                 <div className="mt-4">
                     <InputLabel htmlFor="password" value="Password" />

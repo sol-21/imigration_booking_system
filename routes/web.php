@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AppointementController;
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -37,7 +38,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements', [AppointementController::class, 'store'])->name('appointement.store');
-
+    Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
 });
 
 require __DIR__ . '/auth.php';
