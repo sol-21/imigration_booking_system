@@ -9,4 +9,6 @@ class Appointement extends Model
 {
     use HasFactory;
 
+protected $fillable =['reason','booking_date'];
+
 }

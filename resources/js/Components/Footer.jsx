@@ -12,7 +12,7 @@ import {
 
 function Footer() {
     return (
-        <footer className="pb-3">
+        <footer className="  ">
             <Container fluid={true} className="footerSection">
                 <Row>
                     <Col lg={4} md={6} sm={12} className="text-center">
