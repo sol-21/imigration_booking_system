@@ -27,7 +27,7 @@ export default function CreateAppointement({ auth }) {
     };
     return (
         <CustomerLayout auth={auth}>
-            <div className="container justify-content-center align-items-center ">
+            <div className="d-flex  justify-content-center align-items-center ">
                 <div className=" w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
                     <div className="text-center">
                         <p className="text-3xl text-gray-500">Fill The Form</p>
