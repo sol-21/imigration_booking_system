@@ -47,7 +47,7 @@ function HomePage({ auth }) {
                             sm={12}
                             className="p-2 width text-center"
                         >
-                            <div className="  w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-200 shadow-md shadow overflow-hidden sm:rounded-lg text-center">
+                            <div className="  w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-200 shadow-md  overflow-hidden sm:rounded-lg text-center">
                                 <div className="text-center">
                                     <img
                                         style={{

@@ -4,7 +4,7 @@ import TopNavigation from "@/Components/TopNavigation";
 function CustomerLayout({ auth, header, children }) {
     return (
         <>
-            <TopNavigation />
+            <TopNavigation auth={auth} />
             <main>{children}</main>
             <Footer />
         </>

@@ -14,17 +14,17 @@ class NotificationEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $notification;
-    public function __construct(Notification $notification)
+    
+    public function __construct()
     {
-        $this->notification = $notification;
+        
     }
 
     
     public function envelope()
     {
         return new Envelope(
-            subject: $this->notification->subject,
+            subject: "Your Appointement is Soon !",
         );
     }
 
@@ -36,7 +36,7 @@ class NotificationEmail extends Mailable
     public function content()
     {
         return new Content(
-            // view: 'admin.notification',
+            view: 'email.notification',
         );
     }
 
