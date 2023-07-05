@@ -30,7 +30,7 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
+    return Inertia::render('Admin/ManageAppointement');
 })->middleware(['auth', 'verified','admin'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {

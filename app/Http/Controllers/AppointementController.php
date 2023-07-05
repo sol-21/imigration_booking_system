@@ -14,16 +14,17 @@ class AppointementController extends Controller
     }
     public function store(Request $request)
     {
-$request->validate([
-    'reason'=>'required|max:255|string',
-    'datetime'=>'required|max:255|string'
-]);
-Appointement::create(
-    ['reason'=>$request->reason,
-    'booking_date'=>$request->datetime
-    ]
-);
-        
+
+        $request->validate([
+            'reason'=>'required|max:255|string',
+            'datetime'=>'required|max:255|string'
+        ]);
+        Appointement::create(
+            ['reason'=>$request->reason,
+            'booking_date'=>$request->datetime
+            ]
+        );
 
     }
 }
+
