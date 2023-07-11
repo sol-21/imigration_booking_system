@@ -2,7 +2,7 @@
 
 namespace App\Mail;
 
-use App\Models\Notification;
+use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,21 +10,22 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class NotificationEmail extends Mailable
+class AppointementEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    
-    public function __construct()
+    protected $user;
+
+    public function __construct(User $user)
     {
-        
+        $this->user = $user;
     }
 
     
     public function envelope()
     {
         return new Envelope(
-            subject: "Your Appointement is Soon !",
+            subject: 'Appointement Email',
         );
     }
 
@@ -40,11 +41,7 @@ class NotificationEmail extends Mailable
         );
     }
 
-    /**
-     * Get the attachments for the message.
-     *
-     * @return array
-     */
+    
     public function attachments()
     {
         return [];

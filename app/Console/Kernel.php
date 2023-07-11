@@ -15,7 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('send:email')->everyThreeMinutes();
+        $schedule->command('send:emails')->everyTwoMinutes();
     }
 
     /**
@@ -25,8 +25,11 @@ class Kernel extends ConsoleKernel
      */
     protected function commands()
     {
+         
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+        
+
     }
 }
