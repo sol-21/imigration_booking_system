@@ -4,12 +4,17 @@ import PrimaryButton from "@/Components/PrimaryButton";
 import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
 import CustomerLayout from "@/Layouts/CustomerLayout";
+import InputError from "@/Components/InputError";
 
 export default function CreateAppointement({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         reason: "",
         datetimes: "",
     });
+    const today = new Date().toISOString().split("T")[0];
+    const nextWeek = new Date();
+    nextWeek.setDate(nextWeek.getDate() + 7);
+    const nextWeekDate = nextWeek.toISOString().split("T")[0];
 
     const handleOnChange = (event) => {
         setData(
@@ -44,12 +49,19 @@ export default function CreateAppointement({ auth }) {
                                 className="w-96 mt-1 block border border-gray-300 rounded-lg text-gray-900"
                                 onChange={handleOnChange}
                             >
+                                <option value="" disabled selected>
+                                    Select an option
+                                </option>
                                 <option value="New">New Passport</option>
                                 <option value="Renew">Renew passport</option>
                                 <option value="Citiznship">Citiznship</option>
                                 <option value="Citiznship">Origin Id</option>
                                 <option value="other">Other</option>
                             </select>
+                            <InputError
+                                message={errors.reason}
+                                className="mt-2"
+                            />
                         </div>
 
                         <div className="mt-4">
@@ -57,9 +69,15 @@ export default function CreateAppointement({ auth }) {
                             <TextInput
                                 id="date"
                                 type="date"
+                                min={today}
+                                max={nextWeekDate}
                                 name="datetime"
                                 onChange={handleOnChange}
                                 className="w-96 mt-1 block text-gray-900"
+                            />
+                            <InputError
+                                message={errors.datetime}
+                                className="mt-2"
                             />
                         </div>
 

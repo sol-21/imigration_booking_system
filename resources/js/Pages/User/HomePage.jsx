@@ -1,9 +1,6 @@
-import TopNavigation from "@/Components/TopNavigation";
-
 import { Col, Row } from "react-bootstrap";
 import manage from "../../../assets/images/planning.png";
 import book from "../../../assets/images/edit.png";
-
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import CustomerLayout from "@/Layouts/CustomerLayout";
 
@@ -36,7 +33,7 @@ function HomePage({ auth }) {
                                         href={route("appointement.create")}
                                         className="btn btn-outline-primary"
                                     >
-                                        Book Apointment
+                                        Book appointement
                                     </ResponsiveNavLink>
                                 </div>
                             </div>
@@ -61,10 +58,10 @@ function HomePage({ auth }) {
                                 </div>
                                 <div className="mt-4">
                                     <ResponsiveNavLink
-                                        href={route("appointement.create")}
+                                        href={route("appointement.show")}
                                         className="btn btn-outline-primary"
                                     >
-                                        manage Apointment
+                                        manage appointement
                                     </ResponsiveNavLink>
                                 </div>
                             </div>
