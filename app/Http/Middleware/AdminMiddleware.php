@@ -20,8 +20,8 @@ class AdminMiddleware
         if ($user->is_admin == true) {
             return $next($request);
         }else{
-         return Inertia::render('User/HomePage');
-        }
+            return Inertia::render('User/HomePage');
+}
         
     }
 }

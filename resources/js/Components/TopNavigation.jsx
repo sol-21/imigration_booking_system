@@ -4,6 +4,7 @@ import Navbar from "react-bootstrap/Navbar";
 
 import ApplicationLogo from "./ApplicationLogo";
 import Dropdown from "./Dropdown";
+import { Link } from "@inertiajs/react";
 
 function TopNavigation({ auth }) {
     return (
@@ -20,9 +21,16 @@ function TopNavigation({ auth }) {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto"></Nav>
                     <Nav className="">
-                        <Nav.Link href={route("user.home")}>Home</Nav.Link>
-                        <Nav.Link href={route("about")}>About</Nav.Link>
-                        <Nav.Link href={route("contact")}>Contact Us</Nav.Link>
+                        <Nav.Link>
+                            <Link href={route("user.home")}>Home</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link href={route("about")}>About</Link>
+                        </Nav.Link>
+                        <Nav.Link>
+                            <Link href={route("contact")}>Contact Us</Link>
+                        </Nav.Link>
+
                         <div className="ml-3 relative">
                             <Dropdown>
                                 <Dropdown.Trigger>

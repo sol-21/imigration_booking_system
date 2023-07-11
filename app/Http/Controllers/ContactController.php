@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ContactController extends Controller
@@ -32,7 +34,21 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' =>'required|string|max:255',
+            'email' =>'required|string|max:255|email',
+            'phone' =>'required|string|max:30',
+            'message' =>'required|string|max:300',
+    ]);
+
+    Contact::create([
+            'name' =>$request->name,
+            'email' =>$request->email,
+            'phone' =>$request->phone,
+            'message' =>$request->message,
+    ]);
+
+    return redirect(route('user.home'));
     }
 
     /**

@@ -1,4 +1,4 @@
-import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout";
+
 import CustomerLayout from "@/Layouts/CustomerLayout";
 import { Head } from "@inertiajs/react";
 

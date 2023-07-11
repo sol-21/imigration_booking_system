@@ -9,10 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Appointement extends Model
 {
     use HasFactory;
+protected $fillable =['reason','booking_date','user_id'];
 
-public function user():BelongsTo
+public function user(): BelongsTo
 {
     return $this->belongsTo(User::class);
 }
-
 }

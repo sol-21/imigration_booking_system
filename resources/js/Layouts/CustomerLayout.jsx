@@ -5,7 +5,7 @@ function CustomerLayout({ auth, header, children }) {
     return (
         <>
             <TopNavigation auth={auth} />
-            <main>{children}</main>
+            <main className=" bg-gray-100  min-h-screen ">{children}</main>
             <Footer />
         </>
     );
