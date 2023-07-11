@@ -16,12 +16,13 @@ class AppointementController extends Controller
     }
     public function store(Request $request)
     {
-        $user = Auth::user();
+        $user = User::find(Auth::user()->id);
+       
         $request->validate([
             'reason'=>'required|max:255|string',
             'datetime'=>'required|max:255|string'
         ]);
-        Appointement::create(
+        $user->appointements()->create(
             ['reason'=>$request->reason,
             'booking_date'=>$request->datetime
             ]
@@ -31,11 +32,11 @@ return redirect(route('appointement.show'));
 
     }
     public function show(){
-        $userId = Auth::id();
-
+        $user= Auth::user();
+        $appointements = $user->appointements;
         
-        $appointments = Appointement::where('user_id', $userId)->get();
-        return Inertia::render('User/ManageAppointement',['appointment'=>$appointments]);
+       
+        return Inertia::render('User/ManageAppointement',['appointment'=>$appointements]);
     }
     public function destroy(){}
 }
