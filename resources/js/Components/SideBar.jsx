@@ -1,3 +1,4 @@
+//video link https://www.youtube.com/watch?v=YELPZw5ieHQ&t=3657s
 import { useEffect, useState } from "react";
 import { useRef } from "react";
 
@@ -99,9 +100,6 @@ const SideBar = () => {
                     <IoIosArrowBack size={25} />
                 </motion.div>
                 <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
-                    <h1>
-                        <ApplicationLogo />
-                    </h1>
                     <span className="text-2xl whitespace-pre">ICS </span>
                 </div>
 
