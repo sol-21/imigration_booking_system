@@ -5,14 +5,13 @@ import { motion } from "framer-motion";
 
 // * React icons
 import { IoIosArrowBack } from "react-icons/io";
-import { SlSettings } from "react-icons/sl";
 import { AiOutlineAppstore } from "react-icons/ai";
 import { BsPerson } from "react-icons/bs";
 import { HiOutlineDatabase } from "react-icons/hi";
-
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { Link } from "@inertiajs/react";
+import ApplicationLogo from "./ApplicationLogo";
 
 const SideBar = () => {
     let isTabletMid = useMediaQuery({ query: "(max-width: 500px)" });
@@ -100,41 +99,38 @@ const SideBar = () => {
                     <IoIosArrowBack size={25} />
                 </motion.div>
                 <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
-                    <h1>Asqula Logo</h1>
-                    <span className="text-xl whitespace-pre">Fireball</span>
+                    <h1>
+                        <ApplicationLogo />
+                    </h1>
+                    <span className="text-2xl whitespace-pre">ICS </span>
                 </div>
 
                 <div className="flex flex-col  h-full">
                     <ul className="whitespace-pre px-2.5 text-[0.9rem] py-5 flex flex-col gap-1  font-medium overflow-x-hidden scrollbar-thin scrollbar-track-white scrollbar-thumb-slate-100   md:h-[68%] h-[70%]">
+                        <li>
+                            <Link to={"/authentication"} className="link">
+                                <BsPerson size={23} className="min-w-max" />
+                                Users
+                            </Link>
+                        </li>
+
                         <li>
                             <Link to={"/"} className="link active">
                                 <AiOutlineAppstore
                                     size={23}
                                     className="min-w-max"
                                 />
-                                All students
+                                Apointments
                             </Link>
                         </li>
-                        <li>
-                            <Link to={"/authentication"} className="link">
-                                <BsPerson size={23} className="min-w-max" />
-                                Authentication
-                            </Link>
-                        </li>
+
                         <li>
                             <Link to={"/stroage"} className="link">
                                 <HiOutlineDatabase
                                     size={23}
                                     className="min-w-max"
                                 />
-                                Stroage
-                            </Link>
-                        </li>
-
-                        <li>
-                            <Link to={"/settings"} className="link">
-                                <SlSettings size={23} className="min-w-max" />
-                                Settings
+                                Info Center
                             </Link>
                         </li>
                     </ul>
