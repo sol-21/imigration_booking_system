@@ -18,9 +18,10 @@ class SendEmailJob implements ShouldQueue
 
     protected $user;
 
-    public function __construct(User $user)
+    public function __construct($user)
     {
         $this->user= $user;
+     
     }
 
     /**
@@ -30,7 +31,9 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-
-        Mail::to($this->user->email)->send(new AppointementEmail($this->user));
+         if($this->user){
+           Mail::to($this->user->email)->send(new AppointementEmail($this->user->name));
+          }
+        
     }
 }

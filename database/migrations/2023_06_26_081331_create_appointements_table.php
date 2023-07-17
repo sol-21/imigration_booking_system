@@ -17,8 +17,11 @@ return new class extends Migration
             $table->id();
             $table->date('booking_date');
             $table->string('reason');
-            $table->timestamps();
             $table->foreignId('user_id')->constrained();
+            $table->timestamps();
+             $table->foreignId('user_id')->constrained();
+
+   
         });
     }
 

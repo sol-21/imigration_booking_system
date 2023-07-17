@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Jobs\SendEmailJob;
+use App\Models\Appointement;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Console\Command;
@@ -30,11 +31,28 @@ class NotificationEmailsCommand extends Command
      */
     public function handle()
     {
-         $users = User::all();
-         
-        foreach ($users as $user) {
+         $notificationDay = Carbon::now()->addDay()->format('y-m-d'); 
+
+        $appointments = Appointement::where('booking_date', $notificationDay)->get();
+          
+        if($appointments){
+
+
+           foreach ($appointments as $appointment) {
+            $user = $appointment->user;
+
+            if($user){
+
             dispatch(new SendEmailJob($user));
+
+            $appointment->delete();
+            }
+            
         }
+
+        }
+
+        
         return Command::SUCCESS;
     }
 }

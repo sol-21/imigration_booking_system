@@ -14,11 +14,11 @@ class AppointementEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $user;
+    protected $username;
 
-    public function __construct(User $user)
+    public function __construct($username)
     {
-        $this->user = $user;
+        $this->username = $username;
     }
 
     
@@ -38,6 +38,7 @@ class AppointementEmail extends Mailable
     {
         return new Content(
             view: 'email.notification',
+          
         );
     }
 
