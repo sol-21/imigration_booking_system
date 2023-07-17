@@ -12,7 +12,6 @@ import { HiOutlineDatabase } from "react-icons/hi";
 import { useMediaQuery } from "react-responsive";
 import { MdMenu } from "react-icons/md";
 import { Link } from "@inertiajs/react";
-import ApplicationLogo from "./ApplicationLogo";
 
 const SideBar = () => {
     let isTabletMid = useMediaQuery({ query: "(max-width: 500px)" });
@@ -49,13 +48,13 @@ const SideBar = () => {
               open: {
                   width: "16rem",
                   transition: {
-                      damping: 40,
+                      damping: 20,
                   },
               },
               closed: {
                   width: "4rem",
                   transition: {
-                      damping: 40,
+                      damping: 20,
                   },
               },
           };
@@ -73,9 +72,8 @@ const SideBar = () => {
                 variants={Nav_animation}
                 initial={{ x: isTabletMid ? -250 : 0 }}
                 animate={open ? "open" : "closed"}
-                className=" bg-gray-300  text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
-            overflow-hidden md:relative fixed
-         h-screen "
+                className=" bg-gray-700  text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
+            overflow-hidden md:relative fixed h-screen "
             >
                 <motion.div
                     onClick={() => {
@@ -100,7 +98,9 @@ const SideBar = () => {
                     <IoIosArrowBack size={25} />
                 </motion.div>
                 <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
-                    <span className="text-2xl whitespace-pre">ICS </span>
+                    <span className="text-2xl text-gray-200 whitespace-pre">
+                        ICS{" "}
+                    </span>
                 </div>
 
                 <div className="flex flex-col  h-full">
@@ -113,7 +113,7 @@ const SideBar = () => {
                         </li>
 
                         <li>
-                            <Link to={"/"} className="link active">
+                            <Link href="" className="link active">
                                 <AiOutlineAppstore
                                     size={23}
                                     className="min-w-max"
