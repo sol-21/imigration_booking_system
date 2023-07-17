@@ -1,16 +1,12 @@
 import TopNavAdmin from "@/Components/TopNavAdmin";
 import SideBar from "@/Components/SideBar";
 
-function AdminLayout({ auth, children }) {
+function AdminLayout({ auth, Children }) {
     return (
         <div className=" ">
             <TopNavAdmin auth={auth} />
-            <div className="flex">
-                <SideBar />
-                <main className="m-2 flex justify-center align-middle">
-                    {children}
-                </main>
-            </div>
+            <main>{Children}</main>
+            <SideBar />
         </div>
     );
 }

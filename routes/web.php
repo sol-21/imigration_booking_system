@@ -38,8 +38,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    // user apointment
-
+    //user apointment 
+Route::group(function(){
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
@@ -48,9 +48,7 @@ Route::middleware('auth')->group(function () {
     
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
-
-
-
+});
     //admin routes
 Route::prefix('/admin')->group(function(){
 

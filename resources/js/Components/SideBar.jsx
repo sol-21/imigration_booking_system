@@ -72,9 +72,10 @@ const SideBar = () => {
                 variants={Nav_animation}
                 initial={{ x: isTabletMid ? -250 : 0 }}
                 animate={open ? "open" : "closed"}
-                className=" bg-gray-700  text-gray shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
-            overflow-hidden md:relative fixed h-screen "
-            >
+                className=" bg-gray-300  text-gray shadow-xl z-[5] max-w-[16rem]  w-[16rem] 
+                overflow-hidden md:relative fixed
+             h-screen "
+                >
                 <motion.div
                     onClick={() => {
                         setOpen(!open);
@@ -113,7 +114,10 @@ const SideBar = () => {
                         </li>
 
                         <li>
-                            <Link href="" className="link active">
+                        <Link
+                                href={route("appointement.index")}
+                                className="link active"
+                            >
                                 <AiOutlineAppstore
                                     size={23}
                                     className="min-w-max"
