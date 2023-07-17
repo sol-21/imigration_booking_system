@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointementController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ContactController;
@@ -39,8 +40,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    //apointment
-Route::group(function(){
+    //apointmen
+
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
@@ -49,7 +50,7 @@ Route::group(function(){
     
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
-});
+
     
 Route::prefix('/admin')->group(function(){
 Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
