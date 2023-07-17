@@ -39,7 +39,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //user apointment 
-Route::group(function(){
+
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
@@ -48,7 +48,6 @@ Route::group(function(){
     
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
-});
     //admin routes
 Route::prefix('/admin')->group(function(){
 
