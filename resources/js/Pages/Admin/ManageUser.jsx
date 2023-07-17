@@ -1,3 +1,5 @@
+import AdminModal from "@/Components/AdminModal";
+
 export default function ManageUser() {
-    return <div>ManageUser</div>;
+    return <div></div>;
 }
