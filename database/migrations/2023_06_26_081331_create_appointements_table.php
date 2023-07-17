@@ -17,11 +17,9 @@ return new class extends Migration
             $table->id();
             $table->date('booking_date');
             $table->string('reason');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
-            $table->integer('post_id')->unsigned();
-            $table->foreign('user_id')->references('id')->on('users')
-
-        ->onDelete('cascade');
+            
         });
     }
 

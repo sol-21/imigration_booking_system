@@ -40,13 +40,27 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     //apointment
+Route::group(function(){
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
     Route::get('/appointements/destroy', [AppointementController::class, 'destroy'])->name('appointement.destroy');
+
     
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
+});
+    
+Route::prefix('/admin')->group(function(){
+Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
+Route::Patch('/appointement/{date}', [AdminController::class, 'appointementUpdate'])->name('appointement.update');
+Route::get('/appointement', [AdminController::class, 'appointementIndex'])->name('appointement.index');;
+Route::get('/user', [AdminController::class, 'userIndex'])->name('user.index');
+Route::delete('/user/{id}',[AdminController::class, 'userDestroy'])->name('user.destroy');
+
+
+
+});
     
     //about page
     Route::get('/about', [AboutController::class, 'create'])->name('about');
