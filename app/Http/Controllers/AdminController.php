@@ -21,5 +21,9 @@ class AdminController extends Controller
         return Inertia::render('Admin/HomePage',['users'=>$users,'appointements'=>$appointements]);
     }
 
-    
+    public function appointementIndex(){
+        $users= User::all();
+        $appointements= Appointement::all();
+        return Inertia::render('Admin/ManageAppointement',['users'=>$users,'appointements'=>$appointements]);
+    } 
 }
