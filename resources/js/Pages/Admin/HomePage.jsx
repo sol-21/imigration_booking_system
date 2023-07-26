@@ -1,11 +1,9 @@
 import ResponsiveNavLink from "@/Components/ResponsiveNavLink";
 import AdminLayout from "@/Layouts/AdminLayout";
 import { Col, Row } from "react-bootstrap";
-import manage from "../../../assets/images/planning.png";
-import book from "../../../assets/images/edit.png";
 import { FaUserAlt } from "react-icons/fa";
 import { FaCalendar } from "react-icons/fa";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 function HomePage({ auth, users, appointements }) {
     console.log(users);
     const userCount = users.length;
