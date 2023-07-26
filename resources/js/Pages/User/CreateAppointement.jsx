@@ -5,17 +5,14 @@ import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
 import CustomerLayout from "@/Layouts/CustomerLayout";
 import InputError from "@/Components/InputError";
+import moment from "moment";
 
 export default function CreateAppointement({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         reason: "",
         datetimes: "",
     });
-    const today = new Date().toISOString().split("T")[0];
-    const nextWeek = new Date();
-    nextWeek.setDate(nextWeek.getDate() + 7);
-    const nextWeekDate = nextWeek.toISOString().split("T")[0];
-
+    const currentDate = moment().add(1, "days").format("YYYY-MM-DD");
     const handleOnChange = (event) => {
         setData(
             event.target.name,
@@ -69,8 +66,7 @@ export default function CreateAppointement({ auth }) {
                             <TextInput
                                 id="date"
                                 type="date"
-                                min={today}
-                                max={nextWeekDate}
+                                min={currentDate}
                                 name="datetime"
                                 onChange={handleOnChange}
                                 className="w-96 mt-1 block text-gray-900"
