@@ -43,14 +43,15 @@ Route::middleware('auth')->group(function () {
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
-    Route::get('/appointements/destroy', [AppointementController::class, 'destroy'])->name('appointement.destroy');
+    Route::get('/appointements/destroy/{id}', [AppointementController::class, 'destroy'])->name('appointement.destroy');
 
     
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
-    //admin routes
-Route::prefix('/admin')->group(function(){
 
+
+    //admin routes
+Route::prefix('/admin')->middleware('admin')->group(function(){
 Route::get('/dashboard', function () {
    return    redirect(route('admin.home')) ;
     })->middleware(['auth', 'verified','admin'])->name('dashboard');
@@ -60,7 +61,6 @@ Route::Patch('/appointement/{date}', [AdminController::class, 'appointementUpdat
 Route::get('/appointement', [AdminController::class, 'appointementIndex'])->name('appointement.index');;
 Route::get('/user', [AdminController::class, 'userIndex'])->name('user.index');
 Route::delete('/user/{id}',[AdminController::class, 'userDestroy'])->name('user.destroy');
-
 });
     
     //about page
