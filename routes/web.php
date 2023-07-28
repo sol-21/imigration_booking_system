@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\Hello;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointementController;
@@ -31,7 +32,9 @@ Route::get('/', function () {
 });
 
 
-
+Route::get('/broadcast', function(){
+    broadcast(new Hello());
+});
 Route::middleware('auth')->group(function () {
     // user profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
