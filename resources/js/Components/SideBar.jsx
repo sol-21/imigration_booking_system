@@ -135,6 +135,15 @@ const SideBar = () => {
                                 Info Center
                             </Link>
                         </li>
+                        <li>
+                            <Link to={route("admin.home")} className="link">
+                                <HiOutlineDatabase
+                                    size={23}
+                                    className="min-w-max"
+                                />
+                                Dashboard
+                            </Link>
+                        </li>
                     </ul>
                 </div>
             </motion.div>

@@ -1,7 +1,5 @@
 <?php
-
-use App\Events\AnnouncmentEvent;
-use App\Events\MyEvent;
+use App\Events\Hello;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AppointementController;
@@ -27,10 +25,9 @@ Route::get('/', function () {
 
 Route::get('/socket', function () {
 
-    event(new MyEvent('hello world'));
-    return [];
+Route::get('/broadcast', function(){
+    broadcast(new Hello());
 });
-
 Route::middleware('auth')->group(function () {
     // user profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -39,21 +36,23 @@ Route::middleware('auth')->group(function () {
 
     //user apointment 
 
+
     Route::get('/appointements/create', [AppointementController::class, 'create'])->name('appointement.create');
     Route::post('/appointements/store', [AppointementController::class, 'store'])->name('appointement.store');
     Route::get('/appointements/manage', [AppointementController::class, 'show'])->name('appointement.show');
-    Route::get('/appointements/destroy', [AppointementController::class, 'destroy'])->name('appointement.destroy');
+    Route::get('/appointements/destroy/{id}', [AppointementController::class, 'destroy'])->name('appointement.destroy');
 
 
     //user route
     Route::get('/home', [RegisteredUserController::class, 'home'])->name('user.home');
 
-    //admin routes
-    Route::prefix('/admin')->middleware('admin')->group(function () {
 
-        Route::get('/dashboard', function () {
-            return    redirect(route('admin.home'));
-        })->middleware('verified')->name('dashboard');
+
+    //admin routes
+Route::prefix('/admin')->middleware('admin')->group(function(){
+Route::get('/dashboard', function () {
+   return    redirect(route('admin.home')) ;
+    })->middleware(['auth', 'verified','admin'])->name('dashboard');
 
         Route::get('/home', [AdminController::class, 'index'])->name('admin.home');
         Route::post('/appointement/{date}', [AdminController::class, 'appointementUpdate'])->name('appointement.update');

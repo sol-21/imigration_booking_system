@@ -5,8 +5,19 @@ import Navbar from "react-bootstrap/Navbar";
 import ApplicationLogo from "./ApplicationLogo";
 import Dropdown from "./Dropdown";
 import { Link } from "@inertiajs/react";
+import Echo from "laravel-echo";
+import Pusher from "pusher-js";
+import { useState } from "react";
+import { useEffect } from "react";
 
 function TopNavigation({ auth }) {
+    const [data, setData] = useState([]);
+    useEffect(() => {
+        window.Echo.channel("channel").listen("Hello", (e) => {
+            alert(JSON.stringify(e));
+        });
+    }, [data]);
+
     return (
         <Navbar
             expand="sm"
@@ -14,22 +25,41 @@ function TopNavigation({ auth }) {
             className="shadow-md bg-gray-600"
         >
             <Container>
-                <Navbar.Brand href="#home">
-                    <ApplicationLogo className="navbarlogo" />
+                <Navbar.Brand>
+                    <Link href={route("user.home")}>
+                        <ApplicationLogo className="navbarlogo" />
+                    </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto"></Nav>
-                    <Nav className="">
-                        <Nav.Link>
-                            <Link href={route("user.home")}>Home</Link>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Link href={route("about")}>About</Link>
-                        </Nav.Link>
-                        <Nav.Link>
-                            <Link href={route("contact")}>Contact Us</Link>
-                        </Nav.Link>
+                    <Nav className=" flex gap-3">
+                        <Link
+                            className="social  border-white p-2 rounded-md no-underline text-gray-300 hover:bg-slate-800  transition-all"
+                            href={route("user.home")}
+                        >
+                            Home
+                        </Link>
+
+                        <Link
+                            className="social no-underline border-white p-2 rounded-md text-gray-300 hover:bg-slate-800 "
+                            href={route("about")}
+                        >
+                            About
+                        </Link>
+
+                        <Link
+                            className="social no-underline border-white p-2 rounded-md text-gray-300 hover:bg-slate-800 "
+                            href={route("contact")}
+                        >
+                            Contact Us
+                        </Link>
+                        <Link
+                            className="social no-underline border-white p-2 rounded-md text-gray-300 hover:bg-slate-800 "
+                            href={route("contact")}
+                        >
+                            {data?.hello}
+                        </Link>
 
                         <div className="ml-3 relative">
                             <Dropdown>

@@ -18,8 +18,8 @@ class AdminMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-
-        if (Auth::check() && Auth::user()->is_admin) {
+        $user = Auth::user();
+        if ($user->is_admin == 1) {
             return $next($request);
         } else {
             return Inertia::render('User/HomePage');
