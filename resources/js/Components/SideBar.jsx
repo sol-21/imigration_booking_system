@@ -75,7 +75,7 @@ const SideBar = () => {
                 className=" bg-gray-300  text-gray shadow-xl z-[5] max-w-[16rem]  w-[16rem] 
                 overflow-hidden md:relative fixed
              h-screen "
-                >
+            >
                 <motion.div
                     onClick={() => {
                         setOpen(!open);
@@ -114,9 +114,9 @@ const SideBar = () => {
                         </li>
 
                         <li>
-                        <Link
+                            <Link
                                 href={route("appointement.index")}
-                                className="link active"
+                                className="link"
                             >
                                 <AiOutlineAppstore
                                     size={23}

@@ -5,8 +5,24 @@ import TextInput from "@/Components/TextInput";
 import { Head, useForm } from "@inertiajs/react";
 import CustomerLayout from "@/Layouts/CustomerLayout";
 import InputError from "@/Components/InputError";
+import { useEffect } from "react";
+import { router } from "@inertiajs/react";
+import Pusher from "pusher-js";
 
 export default function CreateAppointement({ auth }) {
+    // useEffect(() => {
+    //     Window.Pusher = Pusher;
+    //     Pusher.logToConsole = true;
+
+    //     const pusher = new Pusher("d58006d4e26a3792d26a", {
+    //         cluster: "ap2",
+    //     });
+
+    //     const channel = pusher.subscribe("chat");
+    //     channel.bind("message", function (data) {
+    //         console.log("message:", data);
+    //     });
+    // });
     const { data, setData, post, processing, errors, reset } = useForm({
         reason: "",
         datetimes: "",
