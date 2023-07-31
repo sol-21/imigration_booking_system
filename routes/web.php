@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -32,9 +33,7 @@ Route::get('/', function () {
 });
 
 
-Route::get('/broadcast', function(){
-    broadcast(new Hello());
-});
+
 Route::middleware('auth')->group(function () {
     // user profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

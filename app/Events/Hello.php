@@ -2,6 +2,7 @@
 
 namespace App\Events;
 
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -14,22 +15,22 @@ use Illuminate\Support\Facades\Auth;
 class Hello implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
-    
+    public $user_id ;
     /**
      * Create a new event instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct( $user_id)
     {
-        //
+        $this->user_id= $user_id;
     }
    
     public function broadcastWith(){
-        
+        $user=User::find($this->user_id);
         return [
             
-            'hello'=> "there"
+            'notification'=> " your appointment is tommorow be ready "
         ];
     }
 
@@ -40,6 +41,6 @@ class Hello implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new Channel('channel');
+        return new privateChannel('user.'.$this->user_id);
     }
 }
