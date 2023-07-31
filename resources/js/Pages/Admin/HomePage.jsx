@@ -5,9 +5,9 @@ import { FaUserAlt } from "react-icons/fa";
 import { FaCalendar } from "react-icons/fa";
 
 function HomePage({ auth, users, appointements }) {
-    console.log(users);
     const userCount = users.length;
     const appointementCount = appointements.length;
+
     return (
         <AdminLayout auth={auth}>
             <Col className="m-4   ">
@@ -36,6 +36,16 @@ function HomePage({ auth, users, appointements }) {
                                 <FaCalendar size="10rem" />
                             </div>
                             <div className="mt-4">{appointementCount}</div>
+                        </div>
+                    </Col>
+                    <Col
+                        lg={6}
+                        md={6}
+                        sm={12}
+                        className="p-2 width text-center"
+                    >
+                        <div className="  w-full sm:max-w-md mt-6 px-6 py-4 bg-gray-200 shadow-md  overflow-hidden sm:rounded-lg text-center">
+                            <div className="mt-4"></div>
                         </div>
                     </Col>
                 </Row>

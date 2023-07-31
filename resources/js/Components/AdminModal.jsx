@@ -2,11 +2,33 @@
 import { Fragment, useRef, useState } from "react";
 import { Dialog, Transition } from "@headlessui/react";
 import { BsExclamation } from "react-icons/bs";
+import TextInput from "./TextInput";
+import InputLabel from "./InputLabel";
+import { useForm } from "@inertiajs/react";
 
 // import { ExclamationIcon } from "@heroicons/react/outline";
 
-export default function AdminModal({ open, setOpen }) {
+export default function AdminModal({ open, setOpen, appointment }) {
     const cancelButtonRef = useRef(null);
+    const { data, setData, post, processing, errors, reset } = useForm({
+        updateReason: "",
+        changedDate: "",
+    });
+
+    const handleOnChange = (event) => {
+        setData(
+            event.target.name,
+            event.target.type === "checkbox"
+                ? event.target.checked
+                : event.target.value
+        );
+    };
+    const submit = (e) => {
+        e.preventDefault();
+
+        post(route("appointement.update", appointment.booking_date));
+        setOpen(() => false);
+    };
 
     return (
         <Transition.Root show={open} as={Fragment}>
@@ -57,16 +79,6 @@ export default function AdminModal({ open, setOpen }) {
                         >
                             <div className="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
                                 <div className="sm:flex sm:items-start">
-                                    <div
-                                        className="mx-auto flex-shrink-0 flex items-center
-                   justify-center h-12 w-12 rounded-full bg-red-100 sm:mx-0
-                    sm:h-10 sm:w-10"
-                                    >
-                                        <BsExclamation
-                                            className="h-6 w-6 text-red-600"
-                                            aria-hidden="true"
-                                        />
-                                    </div>
                                     <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
                                         <Dialog.Title
                                             as="h3"
@@ -75,42 +87,83 @@ export default function AdminModal({ open, setOpen }) {
                                             Update Appointement
                                         </Dialog.Title>
                                         <div className="mt-2">
-                                            <p className="text-sm text-gray-500">
-                                                Are you sure you want to
-                                                deactivate your account? All of
-                                                your data will be permanently
-                                                removed. This action cannot be
-                                                undone.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-                                <button
-                                    type="button"
-                                    className="w-full inline-flex justify-center rounded-md
-                   border border-transparent shadow-sm px-4 py-2 bg-red-600
-                    text-base font-medium text-white hover:bg-red-700 
-                    focus:outline-none focus:ring-2 focus:ring-offset-2
-                     focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={() => setOpen(false)}
-                                >
-                                    update
-                                </button>
-                                <button
-                                    type="button"
-                                    className="mt-3 w-full inline-flex justify-center
+                                            <form
+                                                onSubmit={submit}
+                                                className="flex flex-col space-y-4"
+                                            >
+                                                <InputLabel>Reason</InputLabel>
+                                                <TextInput
+                                                    id="updateReason"
+                                                    name="updateReason"
+                                                    value={data.updateReason}
+                                                    className="w-full"
+                                                    onChange={handleOnChange}
+                                                />
+                                                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse space-x-3">
+                                                    <div className="flex flex-col space-y-3">
+                                                        <InputLabel>
+                                                            Current Date
+                                                        </InputLabel>
+                                                        <TextInput
+                                                            disabled
+                                                            type="date"
+                                                            value={
+                                                                appointment.booking_date
+                                                            }
+                                                        />
+                                                    </div>
+                                                    <div className="flex flex-col space-y-3">
+                                                        <InputLabel h>
+                                                            Changed Date
+                                                        </InputLabel>
+                                                        <TextInput
+                                                            id="changedDate"
+                                                            type="date"
+                                                            value={
+                                                                data.changedDate
+                                                            }
+                                                            name="changedDate"
+                                                            onChange={
+                                                                handleOnChange
+                                                            }
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
+                                                    <button
+                                                        type="submit"
+                                                        className="mt-3 w-full inline-flex justify-center
+                  rounded-md border border-gray-300 shadow-sm px-4 py-2
+                   bg-blue-600 text-base font-medium text-white
+                    hover:bg-blue-700 focus:outline-none focus:ring-2
+                     focus:ring-offset-2 focus:ring-blue-500 sm:mt-0
+                      sm:ml-3 sm:w-auto sm:text-sm"
+                                                        onClick={() =>
+                                                            setOpen(false)
+                                                        }
+                                                    >
+                                                        Update
+                                                    </button>
+                                                    <button
+                                                        type="button"
+                                                        className="mt-3 w-full inline-flex justify-center
                   rounded-md border border-gray-300 shadow-sm px-4 py-2
                    bg-white text-base font-medium text-gray-700
                     hover:bg-gray-50 focus:outline-none focus:ring-2
                      focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0
                       sm:ml-3 sm:w-auto sm:text-sm"
-                                    onClick={() => setOpen(false)}
-                                    ref={cancelButtonRef}
-                                >
-                                    Cancel
-                                </button>
+                                                        onClick={() =>
+                                                            setOpen(false)
+                                                        }
+                                                        ref={cancelButtonRef}
+                                                    >
+                                                        Cancel
+                                                    </button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </Transition.Child>

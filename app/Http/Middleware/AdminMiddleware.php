@@ -1,10 +1,12 @@
 <?php
 
 namespace App\Http\Middleware;
+
 use Inertia\Inertia;
 use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+
 class AdminMiddleware
 {
     /**
@@ -19,9 +21,8 @@ class AdminMiddleware
         $user = Auth::user();
         if ($user->is_admin == 1) {
             return $next($request);
-        }else{
+        } else {
             return Inertia::render('User/HomePage');
-}
-        
+        }
     }
 }

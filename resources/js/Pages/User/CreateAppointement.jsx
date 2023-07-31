@@ -8,6 +8,19 @@ import InputError from "@/Components/InputError";
 import moment from "moment";
 
 export default function CreateAppointement({ auth }) {
+    // useEffect(() => {
+    //     Window.Pusher = Pusher;
+    //     Pusher.logToConsole = true;
+
+    //     const pusher = new Pusher("d58006d4e26a3792d26a", {
+    //         cluster: "ap2",
+    //     });
+
+    //     const channel = pusher.subscribe("chat");
+    //     channel.bind("message", function (data) {
+    //         console.log("message:", data);
+    //     });
+    // });
     const { data, setData, post, processing, errors, reset } = useForm({
         reason: "",
         datetimes: "",

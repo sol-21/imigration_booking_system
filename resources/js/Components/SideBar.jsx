@@ -116,7 +116,7 @@ const SideBar = () => {
                         <li>
                             <Link
                                 href={route("appointement.index")}
-                                className="link active"
+                                className="link"
                             >
                                 <AiOutlineAppstore
                                     size={23}

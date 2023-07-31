@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -10,22 +9,25 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class AppointementEmail extends Mailable
+class UpdatedAppointementEmail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $name;
-
-    public function __construct($username)
+    public $name;
+    public function __construct($name)
     {
-        $this->name = $username;
+        $this->name = $name;
     }
 
-    
+    /**
+     * Get the message envelope.
+     *
+     * @return \Illuminate\Mail\Mailables\Envelope
+     */
     public function envelope()
     {
         return new Envelope(
-            subject: 'Appointement Email',
+            subject: 'Updated Appointement Email',
         );
     }
 
@@ -37,13 +39,16 @@ class AppointementEmail extends Mailable
     public function content()
     {
         return new Content(
-            view: 'email.notification',
-            with: ['name' => $this->name]
-          
+            view: 'email.updateNotification',
+            with: ['name' => $this->name],
         );
     }
 
-    
+    /**
+     * Get the attachments for the message.
+     *
+     * @return array
+     */
     public function attachments()
     {
         return [];
