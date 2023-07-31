@@ -9,14 +9,34 @@ import Echo from "laravel-echo";
 import Pusher from "pusher-js";
 import { useState } from "react";
 import { useEffect } from "react";
+import { AiOutlineClose } from "react-icons/ai";
+import { UseNotificationStore } from "../store/store";
+import { IoIosNotifications } from "react-icons/io";
 
 function TopNavigation({ auth }) {
-    const [data, setData] = useState([]);
+    const isSeen = UseNotificationStore((state) => state.isSeen);
+    const data = UseNotificationStore((state) => state.notificationData);
+    const changeSeen = UseNotificationStore((state) => state.changeSeen);
+    const setData = UseNotificationStore((state) => state.setData);
+
+    const handleNotification = () => {
+        if (data) {
+            changeSeen();
+        }
+    };
+
+    const handleCloseNotification = () => {
+        setData();
+        changeSeen();
+    };
+
     useEffect(() => {
-        window.Echo.channel("channel").listen("Hello", (e) => {
-            alert(JSON.stringify(e));
+        window.Echo.private("user." + auth.user.id).listen("Hello", (e) => {
+            if (e) {
+                setData(e);
+            }
         });
-    }, [data]);
+    }, [auth.user.id]);
 
     return (
         <Navbar
@@ -31,7 +51,7 @@ function TopNavigation({ auth }) {
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Collapse id="basic-navbar-nav relative">
                     <Nav className="me-auto"></Nav>
                     <Nav className=" flex gap-3">
                         <Link
@@ -54,12 +74,35 @@ function TopNavigation({ auth }) {
                         >
                             Contact Us
                         </Link>
-                        <Link
-                            className="social no-underline border-white p-2 rounded-md text-gray-300 hover:bg-slate-800 "
-                            href={route("contact")}
-                        >
-                            {data?.hello}
-                        </Link>
+                        <div className="relative">
+                            <button
+                                onClick={handleNotification}
+                                className="social no-underline border-white p-2 rounded-md  hover:bg-slate-800 "
+                            >
+                                <IoIosNotifications
+                                    size="30px"
+                                    className="text-gray-300"
+                                />
+                            </button>
+                            {data !== undefined && (
+                                <div className="bg-red-500 h-3 w-3 bottom-6 right-3 absolute rounded-lg"></div>
+                            )}
+                        </div>
+
+                        {/* notification board */}
+                        {isSeen ? (
+                            <div className=" bg-gray-100 shadow-lg absolute lg:right-12 lg:top-20 md:right-14 md:top-20 sm:top-24 sm:right-10 w-64 h-26 rounded-md flex justify-center items-center p-2">
+                                <span className="text-red-500">
+                                    {data?.notification}
+                                </span>
+                                <span
+                                    onClick={handleCloseNotification}
+                                    className="hover:cursor-pointer"
+                                >
+                                    <AiOutlineClose />
+                                </span>
+                            </div>
+                        ) : null}
 
                         <div className="ml-3 relative">
                             <Dropdown>
